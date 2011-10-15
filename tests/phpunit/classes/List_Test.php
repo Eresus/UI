@@ -92,8 +92,7 @@ class UI_List_Test extends PHPUnit_Framework_TestCase
 		$provider = $this->getMock('UI_List_Test_DataProvider', array('getCount'));
 		$provider->expects($this->once())->method('getCount')->will($this->returnValue(100));
 
-		$url = $this->getMock('UI_List_Test_URL', array('setPage'));
-		$url->expects($this->once())->method('setPage')->with(5);
+		$url = new UI_List_Test_URL;
 
 		$list = new UI_List(new Plugin(), $provider, $url);
 		$list->setPageSize(10);
@@ -124,11 +123,5 @@ class UI_List_Test_URL implements UI_List_URL_Interface
 	 * @see UI_List_URL_Interface::__toString()
 	 */
 	public function __toString() {}
-	//-----------------------------------------------------------------------------
-
-	/**
-	 * @see UI_List_URL_Interface::setPage()
-	 */
-	public function setPage($page) {}
 	//-----------------------------------------------------------------------------
 }

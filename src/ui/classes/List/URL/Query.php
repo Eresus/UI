@@ -2,7 +2,7 @@
 /**
  * UI
  *
- * Построитель URL с аргументами в запросе
+ * Шаблон URL с аргументами в запросе
  *
  * @version ${product.version}
  *
@@ -33,19 +33,12 @@
 
 
 /**
- * Построитель URL с аргументами в запросе
+ * Шаблон URL с аргументами в запросе
  *
  * @package UI
  */
 class UI_List_URL_Query implements UI_List_URL_Interface
 {
-	/**
-	 * Номер страницы
-	 *
-	 * @var int
-	 */
-	private $page = 1;
-
 	/**
 	 * Возвращает URL в виде строки
 	 *
@@ -57,7 +50,7 @@ class UI_List_URL_Query implements UI_List_URL_Interface
 	{
 		try
 		{
-			$url = $GLOBALS['page']->url(array('page' => $this->page));
+			$url = $GLOBALS['page']->url(array('page' => '%d'));
 		}
 		catch (Exception $e)
 		{
@@ -65,21 +58,6 @@ class UI_List_URL_Query implements UI_List_URL_Interface
 			$url = '';
 		}
 		return $url;
-	}
-	//-----------------------------------------------------------------------------
-
-	/**
-	 * Устанавливает номер страницы списка
-	 *
-	 * @param int $page
-	 *
-	 * @return void
-	 *
-	 * @since 1.00
-	 */
-	public function setPage($page)
-	{
-		$this->page = $page;
 	}
 	//-----------------------------------------------------------------------------
 }
