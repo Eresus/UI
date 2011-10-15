@@ -243,7 +243,7 @@ class UI_List
 			{
 				$this->url = new UI_List_URL_Query();
 			}
-			$totalPages = ceil($this->dataProvider->getCount() / $this->pageSize);
+			$totalPages = $this->pageSize ? ceil($this->dataProvider->getCount() / $this->pageSize) : 0;
 			$this->pagination = new PaginationHelper($totalPages, $this->page, (string) $this->url);
 		}
 		return $this->pagination;
