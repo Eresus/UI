@@ -239,6 +239,10 @@ class UI_List
 	{
 		if (!$this->pagination)
 		{
+			if (!$this->url)
+			{
+				$this->url = new UI_List_URL_Query();
+			}
 			$this->url->setPage($this->page);
 			$totalPages = ceil($this->dataProvider->getCount() / $this->pageSize);
 			$this->pagination = new PaginationHelper($totalPages, $this->page, (string) $this->url);
