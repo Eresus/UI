@@ -2,7 +2,7 @@
 /**
  * UI
  *
- * Интерфейс построителя шаблонов URL
+ * Интерфейс элемента списка
  *
  * @version ${product.version}
  *
@@ -33,43 +33,19 @@
 
 
 /**
- * Интерфейс построителя шаблонов URL
+ * Интерфейс элемента {@link UI_List списка}
  *
  * @package UI
  */
-interface UI_List_URL_Interface
+interface UI_List_Item_Interface
 {
 	/**
-	 * Должен возвращать шаблон URL для переключателя страниц
+	 * Должен возвращать идентификатор элемента
 	 *
 	 * @return string
 	 *
 	 * @since 1.00
 	 */
-	public function getPagination();
-	//-----------------------------------------------------------------------------
-
-	/**
-	 * Должен возвращать шаблон URL для ЭУ «Удалить»
-	 *
-	 * @param UI_List_Item_Interface $item
-	 *
-	 * @return string
-	 *
-	 * @since 1.00
-	 */
-	public function getDelete(UI_List_Item_Interface $item);
-	//-----------------------------------------------------------------------------
-
-	/**
-	 * Должен возвращать шаблон URL для ЭУ «Изменить»
-	 *
-	 * @param UI_List_Item_Interface $item
-	 *
-	 * @return string
-	 *
-	 * @since 1.00
-	 */
-	public function getEdit(UI_List_Item_Interface $item);
+	public function getId();
 	//-----------------------------------------------------------------------------
 }

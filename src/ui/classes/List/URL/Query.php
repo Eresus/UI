@@ -40,24 +40,45 @@
 class UI_List_URL_Query implements UI_List_URL_Interface
 {
 	/**
-	 * Возвращает URL в виде строки
+	 * Возвращает шаблон URL для переключателя страниц
 	 *
 	 * @return string
 	 *
 	 * @since 1.00
 	 */
-	public function __toString()
+	public function getPagination()
 	{
-		try
-		{
-			$url = $GLOBALS['page']->url(array('page' => '%d'));
-		}
-		catch (Exception $e)
-		{
-			Core::logException($e);
-			$url = '';
-		}
-		return $url;
+		return $GLOBALS['page']->url(array('page' => '%d'));
+	}
+	//-----------------------------------------------------------------------------
+
+	/**
+	 * Возвращает URL для ЭУ «Удалить»
+	 *
+	 * @param UI_List_Item_Interface $item
+	 *
+	 * @return string
+	 *
+	 * @since 1.00
+	 */
+	public function getDelete(UI_List_Item_Interface $item)
+	{
+		return $GLOBALS['page']->url(array('id' => $item->getId(), 'action' => 'delete'));
+	}
+	//-----------------------------------------------------------------------------
+
+	/**
+	 * Возвращает URL для ЭУ «Изменить»
+	 *
+	 * @param UI_List_Item_Interface $item
+	 *
+	 * @return string
+	 *
+	 * @since 1.00
+	 */
+	public function getEdit(UI_List_Item_Interface $item)
+	{
+		return $GLOBALS['page']->url(array('id' => $item->getId(), 'action' => 'edit'));
 	}
 	//-----------------------------------------------------------------------------
 }

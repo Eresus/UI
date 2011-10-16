@@ -166,7 +166,7 @@ class UI_List
 	//-----------------------------------------------------------------------------
 
 	/**
-	 * Устанавливает корневой URL
+	 * Устанавливает шаблон URL
 	 *
 	 * @param UI_List_URL_Interface $url
 	 *
@@ -239,14 +239,70 @@ class UI_List
 	{
 		if (!$this->pagination)
 		{
-			if (!$this->url)
-			{
-				$this->url = new UI_List_URL_Query();
-			}
 			$totalPages = $this->pageSize ? ceil($this->dataProvider->getCount() / $this->pageSize) : 0;
-			$this->pagination = new PaginationHelper($totalPages, $this->page, (string) $this->url);
+			$this->pagination = new PaginationHelper($totalPages, $this->page,
+				$this->getURL()->getPagination());
 		}
 		return $this->pagination;
+	}
+	//-----------------------------------------------------------------------------
+
+	/**
+	 * Возвращает элементы управления
+	 *
+	 * Возможные имена ЭУ:
+	 *
+	 * - delete — Удаление
+	 * - edit — Изменение
+	 * - toggle — «Активность»
+	 *
+	 * @param UI_List_Item_Interface $item
+	 * @param string                 $control1…$controlN
+	 *
+	 * @return string
+	 *
+	 * @since 1.00
+	 */
+	public function getControls(UI_List_Item_Interface $item)
+	{
+		$controls = func_get_args();
+		array_shift($controls);
+
+		$html = '';
+
+		if (in_array('delete', $controls))
+		{
+			$html .= '<a href="' . $this->getURL()->getDelete($item) . '" title="' . admDelete .
+				'"><img src="' . $GLOBALS['Eresus']->root .
+				$GLOBALS['page']->getUITheme()->getIcon('item-delete.png') . '" alt="' . admDelete .
+				'"></a> ';
+		}
+
+		if (in_array('edit', $controls))
+		{
+			$html .= '<a href="' . $this->getURL()->getEdit($item) . '" title="' . admEdit .
+				'"><img src="' . $GLOBALS['Eresus']->root .
+				$GLOBALS['page']->getUITheme()->getIcon('item-edit.png') . '" alt="' . admEdit . '"></a>';
+		}
+
+		return $html;
+	}
+	//-----------------------------------------------------------------------------
+
+	/**
+	 * Возвращает шаблон URL
+	 *
+	 * @return UI_List_URL_Interface
+	 *
+	 * @since 1.00
+	 */
+	public function getURL()
+	{
+		if (!$this->url)
+		{
+			$this->url = new UI_List_URL_Query();
+		}
+		return $this->url;
 	}
 	//-----------------------------------------------------------------------------
 }

@@ -120,8 +120,20 @@ class UI_List_Test_DataProvider implements UI_List_DataProvider_Interface
 class UI_List_Test_URL implements UI_List_URL_Interface
 {
 	/**
-	 * @see UI_List_URL_Interface::__toString()
+	 * @see UI_List_URL_Interface::getPagination()
 	 */
-	public function __toString() {}
+	public function getPagination() {}
+	//-----------------------------------------------------------------------------
+
+	/**
+	 * @see UI_List_URL_Interface::getDelete()
+	 */
+	public function getDelete(UI_List_Item_Interface $item) {}
+	//-----------------------------------------------------------------------------
+
+	/**
+	 * @see UI_List_URL_Interface::getEdit()
+	 */
+	public function getEdit(UI_List_Item_Interface $item) {}
 	//-----------------------------------------------------------------------------
 }
