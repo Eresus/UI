@@ -56,7 +56,8 @@
  * {$list->getPagination()->render()}
  * </code>
  *
- * Корневой адрес для переключателя страниц задаётся методом {@link setURL()}.
+ * Чтобы использовать в шаблоне переключатель страниц и другие элементы управления списокм, надо
+ * задать генератор адресов методом {@link setURL()}.
  *
  * @package UI
  */
@@ -166,7 +167,26 @@ class UI_List
 	//-----------------------------------------------------------------------------
 
 	/**
+	 * Возвращает шаблон URL
+	 *
+	 * @return UI_List_URL_Interface
+	 *
+	 * @since 1.00
+	 */
+	public function getURL()
+	{
+		if (!$this->url)
+		{
+			$this->url = new UI_List_URL_Query();
+		}
+		return $this->url;
+	}
+	//-----------------------------------------------------------------------------
+
+	/**
 	 * Устанавливает шаблон URL
+	 *
+	 * См. {@link UI_List_URL_Interface}
 	 *
 	 * @param UI_List_URL_Interface $url
 	 *
@@ -286,23 +306,6 @@ class UI_List
 		}
 
 		return $html;
-	}
-	//-----------------------------------------------------------------------------
-
-	/**
-	 * Возвращает шаблон URL
-	 *
-	 * @return UI_List_URL_Interface
-	 *
-	 * @since 1.00
-	 */
-	public function getURL()
-	{
-		if (!$this->url)
-		{
-			$this->url = new UI_List_URL_Query();
-		}
-		return $this->url;
 	}
 	//-----------------------------------------------------------------------------
 }
