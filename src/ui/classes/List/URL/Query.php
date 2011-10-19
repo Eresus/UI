@@ -166,7 +166,7 @@ class UI_List_URL_Query implements UI_List_URL_Interface
 	 */
 	public function getOrderingUp(UI_List_Item_Interface $item)
 	{
-		return $this->baseURL . $this->idName . '=' . $item->getId() . '&ordering=up';
+		return $this->baseURL . $this->idName . '=' . $item->getId() . '&action=up';
 	}
 	//-----------------------------------------------------------------------------
 
@@ -181,7 +181,7 @@ class UI_List_URL_Query implements UI_List_URL_Interface
 	 */
 	public function getOrderingDown(UI_List_Item_Interface $item)
 	{
-		return $this->baseURL . $this->idName . '=' . $item->getId() . '&ordering=down';
+		return $this->baseURL . $this->idName . '=' . $item->getId() . '&action=down';
 	}
 	//-----------------------------------------------------------------------------
 
