@@ -44,20 +44,29 @@
  * Можно задать размер страницы и номер текущей страницы списка при помощи {@link setPageSize()} и
  * {@link setPage()} соответственно.
  *
- * Для отрисовки списка надо передать в шаблон либо сам объект UI_List, либо значения, возвращаемые
- * методами {@link getItems()} и {@link getPagination()}.
- *
- * Если передавать объект в переменной <b>$list</b>, то шаблон может выглядеть так:
- *
- * <code>
- * {foreach $list->getItems() item}
- * <div>{$item.foo} {$item.bar}</div>
- * {/foreach}
- * {$list->getPagination()->render()}
- * </code>
+ * Для отрисовки списка надо передать в шаблон объект {@link UI_List}, а затем использовать
+ * методы {@link getItems()}, {@link getPagination()} и {@link getControls()} для вставки в шаблон
+ * соответствующих частей списка.
  *
  * Чтобы использовать в шаблоне переключатель страниц и другие элементы управления списокм, надо
  * задать генератор адресов методом {@link setURL()}.
+ *
+ * Пример шаблона:
+ *
+ * <code>
+ * {if count($list->getItems())}
+ * <ul>
+ *   {foreach $list->getItems() item}
+ *   <li>
+ *     {$list->getControls($item, 'edit', 'toggle', 'delete')}
+ *     {$item->foo}
+ *     {$item->bar}
+ *   </li>
+ *   {/foreach}
+ * </ul>
+ * {$list->getPagination()->render()}
+ * {/if}
+ * </code>
  *
  * @package UI
  */
@@ -117,7 +126,7 @@ class UI_List
 	 *
 	 * @param Plugin                         $plugin    плагин-владелец
 	 * @param UI_List_DataProvider_Interface $provider  поставщик данных
-	 * @param UI_List_URL_Interface          $url       базовый URL
+	 * @param UI_List_URL_Interface          $url       построитель адресов
 	 *
 	 * @return UI_List
 	 *
@@ -167,7 +176,7 @@ class UI_List
 	//-----------------------------------------------------------------------------
 
 	/**
-	 * Возвращает шаблон URL
+	 * Возвращает построитель адресов
 	 *
 	 * @return UI_List_URL_Interface
 	 *
@@ -184,7 +193,7 @@ class UI_List
 	//-----------------------------------------------------------------------------
 
 	/**
-	 * Устанавливает шаблон URL
+	 * Устанавливает построитель адресов
 	 *
 	 * См. {@link UI_List_URL_Interface}
 	 *
@@ -201,7 +210,7 @@ class UI_List
 	//-----------------------------------------------------------------------------
 
 	/**
-	 * Устанавливает страницу списка
+	 * Устанавливает номер текущей страницы списка
 	 *
 	 * @param int $page
 	 *
@@ -231,7 +240,7 @@ class UI_List
 	//-----------------------------------------------------------------------------
 
 	/**
-	 * Возвращает массив элементов списка
+	 * Возвращает массив элементов списка для подстановки в шаблон
 	 *
 	 * @return array
 	 *
@@ -268,16 +277,16 @@ class UI_List
 	//-----------------------------------------------------------------------------
 
 	/**
-	 * Возвращает элементы управления
+	 * Возвращает разметку элементов управления для использования в шаблоне
 	 *
 	 * Возможные имена ЭУ:
 	 *
 	 * - delete — Удаление
 	 * - edit — Изменение
-	 * - toggle — «Активность»
+	 * - toggle — Включить/Отключить
 	 *
-	 * @param UI_List_Item_Interface $item
-	 * @param string                 $control1…$controlN
+	 * @param UI_List_Item_Interface $item                элемент списка, для которого нужны ЭУ
+	 * @param string                 $control1…$controlN  список ЭУ, которые нужны
 	 *
 	 * @return string
 	 *
@@ -296,6 +305,17 @@ class UI_List
 				'"><img src="' . $GLOBALS['Eresus']->root .
 				$GLOBALS['page']->getUITheme()->getIcon('item-edit.png') . '" alt="' . admEdit . '"></a> ';
 		}
+
+		if (in_array('toggle', $controls))
+		{
+			$html .= '<a href="' . $this->getURL()->getToggle($item) . '" title="' .
+				($item->isEnabled() ? admDeactivate : admActivate ) .
+				'"><img src="' . $GLOBALS['Eresus']->root .
+				$GLOBALS['page']->getUITheme()->getIcon('item-' .
+				($item->isEnabled() ? 'active' : 'inactive') . '.png') . '" alt="' .
+				($item->isEnabled() ? admActivated : admDeactivated ) . '"></a> ';
+		}
+
 		if (in_array('delete', $controls))
 		{
 			$html .= '<a href="' . $this->getURL()->getDelete($item) . '" title="' . admDelete .

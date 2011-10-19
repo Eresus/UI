@@ -136,4 +136,10 @@ class UI_List_Test_URL implements UI_List_URL_Interface
 	 */
 	public function getEdit(UI_List_Item_Interface $item) {}
 	//-----------------------------------------------------------------------------
+
+	/**
+	 * @see UI_List_URL_Interface::getToggle()
+	 */
+	public function getToggle(UI_List_Item_Interface $item) {}
+	//-----------------------------------------------------------------------------
 }

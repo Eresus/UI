@@ -2,7 +2,7 @@
 /**
  * UI
  *
- * Шаблон URL с аргументами в запросе
+ * Построитель адресов с аргументами в запросе
  *
  * @version ${product.version}
  *
@@ -33,7 +33,7 @@
 
 
 /**
- * Шаблон URL с аргументами в запросе (query)
+ * Построитель адресов с аргументами в запросе (query)
  *
  * Например, шаблон переключателя страниц может выглядеть так:
  *
@@ -152,6 +152,21 @@ class UI_List_URL_Query implements UI_List_URL_Interface
 	public function getEdit(UI_List_Item_Interface $item)
 	{
 		return $this->baseURL . $this->idName . '=' . $item->getId() . '&action=edit';
+	}
+	//-----------------------------------------------------------------------------
+
+	/**
+	 * Возвращает URL для ЭУ «Включить/Отключить»
+	 *
+	 * @param UI_List_Item_Interface $item
+	 *
+	 * @return string
+	 *
+	 * @since 1.00
+	 */
+	public function getToggle(UI_List_Item_Interface $item)
+	{
+		return $this->baseURL . $this->idName . '=' . $item->getId() . '&action=toggle';
 	}
 	//-----------------------------------------------------------------------------
 }
