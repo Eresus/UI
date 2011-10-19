@@ -283,6 +283,7 @@ class UI_List
 	 *
 	 * - delete — Удаление
 	 * - edit — Изменение
+	 * - ordering — Переместить выше/ниже в списке
 	 * - toggle — Включить/Отключить
 	 *
 	 * @param UI_List_Item_Interface $item                элемент списка, для которого нужны ЭУ
@@ -307,6 +308,11 @@ class UI_List
 		if (in_array('toggle', $controls))
 		{
 			$html .= $this->getControl_toggle($item);
+		}
+
+		if (in_array('ordering', $controls))
+		{
+			$html .= $this->getControl_ordering($item);
 		}
 
 		if (in_array('delete', $controls))
@@ -350,6 +356,26 @@ class UI_List
 		return '<a href="' . $this->getURL()->getEdit($item) . '" title="' . admEdit .
 			'"><img src="' . $GLOBALS['Eresus']->root .
 			$GLOBALS['page']->getUITheme()->getIcon('item-edit.png') . '" alt="' . admEdit . '"></a> ';
+	}
+	//-----------------------------------------------------------------------------
+
+	/**
+	 * Возвращает разметку ЭУ «Порядок следования»
+	 *
+	 * @param UI_List_Item_Interface $item  элемент списка, для которого нужно создать ЭУ
+	 *
+	 * @return string
+	 *
+	 * @since 1.00
+	 */
+	private function getControl_ordering(UI_List_Item_Interface $item)
+	{
+		return '<a href="' . $this->getURL()->getOrderingUp($item) . '" title="' . admUp .
+			'"><img src="' . $GLOBALS['Eresus']->root . $GLOBALS['page']->getUITheme()->
+			getIcon('move-up.png') . '" alt="' . admUp . '"></a> ' .
+			'<a href="' . $this->getURL()->getOrderingDown($item) . '" title="' . admDown .
+			'"><img src="' . $GLOBALS['Eresus']->root . $GLOBALS['page']->getUITheme()->
+			getIcon('move-down.png') . '" alt="' . admDown . '"></a> ';
 	}
 	//-----------------------------------------------------------------------------
 

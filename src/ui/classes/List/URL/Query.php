@@ -156,6 +156,36 @@ class UI_List_URL_Query implements UI_List_URL_Interface
 	//-----------------------------------------------------------------------------
 
 	/**
+	 * Возвращает шаблон URL для ЭУ «Поднять выше»
+	 *
+	 * @param UI_List_Item_Interface $item
+	 *
+	 * @return string
+	 *
+	 * @since 1.00
+	 */
+	public function getOrderingUp(UI_List_Item_Interface $item)
+	{
+		return $this->baseURL . $this->idName . '=' . $item->getId() . '&ordering=up';
+	}
+	//-----------------------------------------------------------------------------
+
+	/**
+	 * Возвращает шаблон URL для ЭУ «Опустить ниже»
+	 *
+	 * @param UI_List_Item_Interface $item
+	 *
+	 * @return string
+	 *
+	 * @since 1.00
+	 */
+	public function getOrderingDown(UI_List_Item_Interface $item)
+	{
+		return $this->baseURL . $this->idName . '=' . $item->getId() . '&ordering=down';
+	}
+	//-----------------------------------------------------------------------------
+
+	/**
 	 * Возвращает URL для ЭУ «Включить/Отключить»
 	 *
 	 * @param UI_List_Item_Interface $item

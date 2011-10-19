@@ -81,6 +81,30 @@ interface UI_List_URL_Interface
 	//-----------------------------------------------------------------------------
 
 	/**
+	 * Должен возвращать шаблон URL для ЭУ «Поднять выше»
+	 *
+	 * @param UI_List_Item_Interface $item
+	 *
+	 * @return string
+	 *
+	 * @since 1.00
+	 */
+	public function getOrderingUp(UI_List_Item_Interface $item);
+	//-----------------------------------------------------------------------------
+
+	/**
+	 * Должен возвращать шаблон URL для ЭУ «Опустить ниже»
+	 *
+	 * @param UI_List_Item_Interface $item
+	 *
+	 * @return string
+	 *
+	 * @since 1.00
+	 */
+	public function getOrderingDown(UI_List_Item_Interface $item);
+	//-----------------------------------------------------------------------------
+
+	/**
 	 * Должен возвращать шаблон URL для ЭУ «Включить/Отключить»
 	 *
 	 * @param UI_List_Item_Interface $item

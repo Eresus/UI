@@ -138,6 +138,18 @@ class UI_List_Test_URL implements UI_List_URL_Interface
 	//-----------------------------------------------------------------------------
 
 	/**
+	 * @see UI_List_URL_Interface::getOrderingUp()
+	 */
+	public function getOrderingUp(UI_List_Item_Interface $item) {}
+	//-----------------------------------------------------------------------------
+
+	/**
+	 * @see UI_List_URL_Interface::getOrderingDown()
+	 */
+	public function getOrderingDown(UI_List_Item_Interface $item) {}
+	//-----------------------------------------------------------------------------
+
+	/**
 	 * @see UI_List_URL_Interface::getToggle()
 	 */
 	public function getToggle(UI_List_Item_Interface $item) {}
