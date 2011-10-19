@@ -301,30 +301,75 @@ class UI_List
 
 		if (in_array('edit', $controls))
 		{
-			$html .= '<a href="' . $this->getURL()->getEdit($item) . '" title="' . admEdit .
-				'"><img src="' . $GLOBALS['Eresus']->root .
-				$GLOBALS['page']->getUITheme()->getIcon('item-edit.png') . '" alt="' . admEdit . '"></a> ';
+			$html .= $this->getControl_edit($item);
 		}
 
 		if (in_array('toggle', $controls))
 		{
-			$html .= '<a href="' . $this->getURL()->getToggle($item) . '" title="' .
-				($item->isEnabled() ? admDeactivate : admActivate ) .
-				'"><img src="' . $GLOBALS['Eresus']->root .
-				$GLOBALS['page']->getUITheme()->getIcon('item-' .
-				($item->isEnabled() ? 'active' : 'inactive') . '.png') . '" alt="' .
-				($item->isEnabled() ? admActivated : admDeactivated ) . '"></a> ';
+			$html .= $this->getControl_toggle($item);
 		}
 
 		if (in_array('delete', $controls))
 		{
-			$html .= '<a href="' . $this->getURL()->getDelete($item) . '" title="' . admDelete .
-						'" onclick="return askdel(this);"><img src="' . $GLOBALS['Eresus']->root .
-			$GLOBALS['page']->getUITheme()->getIcon('item-delete.png') . '" alt="' . admDelete .
-						'"></a> ';
+			$html .= $this->getControl_delete($item);
 		}
 
 		return $html;
+	}
+	//-----------------------------------------------------------------------------
+
+	/**
+	 * Возвращает разметку ЭУ «Удалить»
+	 *
+	 * @param UI_List_Item_Interface $item  элемент списка, для которого нужно создать ЭУ
+	 *
+	 * @return string
+	 *
+	 * @since 1.00
+	 */
+	private function getControl_delete(UI_List_Item_Interface $item)
+	{
+		return '<a href="' . $this->getURL()->getDelete($item) . '" title="' . admDelete .
+			'" onclick="return askdel(this);"><img src="' . $GLOBALS['Eresus']->root .
+			$GLOBALS['page']->getUITheme()->getIcon('item-delete.png') . '" alt="' . admDelete .
+			'"></a> ';
+	}
+	//-----------------------------------------------------------------------------
+
+	/**
+	 * Возвращает разметку ЭУ «Изменить»
+	 *
+	 * @param UI_List_Item_Interface $item  элемент списка, для которого нужно создать ЭУ
+	 *
+	 * @return string
+	 *
+	 * @since 1.00
+	 */
+	private function getControl_edit(UI_List_Item_Interface $item)
+	{
+		return '<a href="' . $this->getURL()->getEdit($item) . '" title="' . admEdit .
+			'"><img src="' . $GLOBALS['Eresus']->root .
+			$GLOBALS['page']->getUITheme()->getIcon('item-edit.png') . '" alt="' . admEdit . '"></a> ';
+	}
+	//-----------------------------------------------------------------------------
+
+	/**
+	 * Возвращает разметку ЭУ «Активность»
+	 *
+	 * @param UI_List_Item_Interface $item  элемент списка, для которого нужно создать ЭУ
+	 *
+	 * @return string
+	 *
+	 * @since 1.00
+	 */
+	private function getControl_toggle(UI_List_Item_Interface $item)
+	{
+		return '<a href="' . $this->getURL()->getToggle($item) . '" title="' .
+			($item->isEnabled() ? admDeactivate : admActivate ) .
+			'"><img src="' . $GLOBALS['Eresus']->root .
+			$GLOBALS['page']->getUITheme()->getIcon('item-' .
+			($item->isEnabled() ? 'active' : 'inactive') . '.png') . '" alt="' .
+			($item->isEnabled() ? admActivated : admDeactivated ) . '"></a> ';
 	}
 	//-----------------------------------------------------------------------------
 }
