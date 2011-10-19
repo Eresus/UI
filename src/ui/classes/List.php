@@ -290,19 +290,18 @@ class UI_List
 
 		$html = '';
 
-		if (in_array('delete', $controls))
-		{
-			$html .= '<a href="' . $this->getURL()->getDelete($item) . '" title="' . admDelete .
-				'"><img src="' . $GLOBALS['Eresus']->root .
-				$GLOBALS['page']->getUITheme()->getIcon('item-delete.png') . '" alt="' . admDelete .
-				'"></a> ';
-		}
-
 		if (in_array('edit', $controls))
 		{
 			$html .= '<a href="' . $this->getURL()->getEdit($item) . '" title="' . admEdit .
 				'"><img src="' . $GLOBALS['Eresus']->root .
-				$GLOBALS['page']->getUITheme()->getIcon('item-edit.png') . '" alt="' . admEdit . '"></a>';
+				$GLOBALS['page']->getUITheme()->getIcon('item-edit.png') . '" alt="' . admEdit . '"></a> ';
+		}
+		if (in_array('delete', $controls))
+		{
+			$html .= '<a href="' . $this->getURL()->getDelete($item) . '" title="' . admDelete .
+						'" onclick="return askdel(this);"><img src="' . $GLOBALS['Eresus']->root .
+			$GLOBALS['page']->getUITheme()->getIcon('item-delete.png') . '" alt="' . admDelete .
+						'"></a> ';
 		}
 
 		return $html;
