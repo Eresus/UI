@@ -34,12 +34,6 @@
 
 define('TESTS_SRC_DIR', realpath(__DIR__ . '/../../src'));
 
-PHP_CodeCoverage_Filter::getInstance()->addFileToWhitelist(TESTS_SRC_DIR .
-	'/ui/classes/List/DataProvider/Interface.php');
-PHP_CodeCoverage_Filter::getInstance()->addFileToWhitelist(TESTS_SRC_DIR .
-	'/ui/classes/List/URL/Interface.php');
-PHP_CodeCoverage_Filter::getInstance()->addDirectoryToWhitelist(TESTS_SRC_DIR);
-
 /**
  * Универсальная заглушка
  *
