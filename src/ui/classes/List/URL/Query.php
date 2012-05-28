@@ -84,7 +84,7 @@ class UI_List_URL_Query implements UI_List_URL_Interface
 		}
 		else
 		{
-			$this->baseURL = $GLOBALS['page']->url();
+			$this->baseURL = Eresus_Kernel::app()->getPage()->url();
 		}
 		$lastChar = mb_substr($this->baseURL, -1);
 		if ('&' != $lastChar && '?' != $lastChar)
@@ -96,7 +96,7 @@ class UI_List_URL_Query implements UI_List_URL_Interface
 	//-----------------------------------------------------------------------------
 
 	/**
-	 * Задаёт имя аргумента для передачи идентификатора элмента списка
+	 * Задаёт имя аргумента для передачи идентификатора элемента списка
 	 *
 	 * По умолчанию имя аргумента «id».
 	 *
