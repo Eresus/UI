@@ -1,7 +1,5 @@
 <?php
 /**
- * UI
- *
  * Интерфейс построителя шаблонов адресов
  *
  * @version ${product.version}
@@ -27,8 +25,6 @@
  * <http://www.gnu.org/licenses/>
  *
  * @package UI
- *
- * $Id$
  */
 
 
@@ -54,7 +50,6 @@ interface UI_List_URL_Interface
 	 * @since 1.00
 	 */
 	public function getPagination();
-	//-----------------------------------------------------------------------------
 
 	/**
 	 * Должен возвращать шаблон URL для ЭУ «Удалить»
@@ -66,7 +61,6 @@ interface UI_List_URL_Interface
 	 * @since 1.00
 	 */
 	public function getDelete(UI_List_Item_Interface $item);
-	//-----------------------------------------------------------------------------
 
 	/**
 	 * Должен возвращать шаблон URL для ЭУ «Изменить»
@@ -78,7 +72,6 @@ interface UI_List_URL_Interface
 	 * @since 1.00
 	 */
 	public function getEdit(UI_List_Item_Interface $item);
-	//-----------------------------------------------------------------------------
 
 	/**
 	 * Должен возвращать шаблон URL для ЭУ «Поднять выше»
@@ -90,7 +83,6 @@ interface UI_List_URL_Interface
 	 * @since 1.00
 	 */
 	public function getOrderingUp(UI_List_Item_Interface $item);
-	//-----------------------------------------------------------------------------
 
 	/**
 	 * Должен возвращать шаблон URL для ЭУ «Опустить ниже»
@@ -102,7 +94,6 @@ interface UI_List_URL_Interface
 	 * @since 1.00
 	 */
 	public function getOrderingDown(UI_List_Item_Interface $item);
-	//-----------------------------------------------------------------------------
 
 	/**
 	 * Должен возвращать шаблон URL для ЭУ «Включить/Отключить»
@@ -114,5 +105,4 @@ interface UI_List_URL_Interface
 	 * @since 1.00
 	 */
 	public function getToggle(UI_List_Item_Interface $item);
-	//-----------------------------------------------------------------------------
 }

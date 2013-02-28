@@ -1,7 +1,5 @@
 <?php
 /**
- * UI
- *
  * Интерфейс поставщика данных для списка
  *
  * @version ${product.version}
@@ -27,8 +25,6 @@
  * <http://www.gnu.org/licenses/>
  *
  * @package UI
- *
- * $Id$
  */
 
 
@@ -54,7 +50,6 @@ interface UI_List_DataProvider_Interface
 	 * @since 1.00
 	 */
 	public function getItems($limit = null, $offset = 0);
-	//-----------------------------------------------------------------------------
 
 	/**
 	 * Должен возвращать общее количество элементов в списке
@@ -64,5 +59,4 @@ interface UI_List_DataProvider_Interface
 	 * @since 1.00
 	 */
 	public function getCount();
-	//-----------------------------------------------------------------------------
 }

@@ -1,7 +1,5 @@
 <?php
 /**
- * UI
- *
  * Интерфейс элемента списка
  *
  * @version ${product.version}
@@ -27,8 +25,6 @@
  * <http://www.gnu.org/licenses/>
  *
  * @package UI
- *
- * $Id$
  */
 
 
@@ -47,7 +43,6 @@ interface UI_List_Item_Interface
 	 * @since 1.00
 	 */
 	public function getId();
-	//-----------------------------------------------------------------------------
 
 	/**
 	 * Должен возвращать true если элемент включён
@@ -59,5 +54,4 @@ interface UI_List_Item_Interface
 	 * @since 1.00
 	 */
 	public function isEnabled();
-	//-----------------------------------------------------------------------------
 }

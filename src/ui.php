@@ -1,7 +1,5 @@
 <?php
 /**
- * UI
- *
  * Компоненты для построения UI
  *
  * @version ${product.version}
@@ -27,8 +25,6 @@
  * <http://www.gnu.org/licenses/>
  *
  * @package UI
- *
- * $Id$
  */
 
 /**
@@ -48,7 +44,7 @@ class UI extends Plugin
 	 * Требуемая версия ядра
 	 * @var string
 	 */
-	public $kernel = '3.00b';
+	public $kernel = '3.00';
 
 	/**
 	 * Название плагина

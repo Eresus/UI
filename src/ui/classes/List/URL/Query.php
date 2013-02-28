@@ -1,7 +1,5 @@
 <?php
 /**
- * UI
- *
  * Построитель адресов с аргументами в запросе
  *
  * @version ${product.version}
@@ -27,8 +25,6 @@
  * <http://www.gnu.org/licenses/>
  *
  * @package UI
- *
- * $Id$
  */
 
 
@@ -93,7 +89,6 @@ class UI_List_URL_Query implements UI_List_URL_Interface
 			$this->baseURL .= $hasQuery ? '&' : '?';
 		}
 	}
-	//-----------------------------------------------------------------------------
 
 	/**
 	 * Задаёт имя аргумента для передачи идентификатора элемента списка
@@ -110,7 +105,6 @@ class UI_List_URL_Query implements UI_List_URL_Interface
 	{
 		$this->idName = $name;
 	}
-	//-----------------------------------------------------------------------------
 
 	/**
 	 * Возвращает шаблон URL для переключателя страниц
@@ -123,7 +117,6 @@ class UI_List_URL_Query implements UI_List_URL_Interface
 	{
 		return $this->baseURL . 'page=%d';
 	}
-	//-----------------------------------------------------------------------------
 
 	/**
 	 * Возвращает URL для ЭУ «Удалить»
@@ -138,7 +131,6 @@ class UI_List_URL_Query implements UI_List_URL_Interface
 	{
 		return $this->baseURL . $this->idName . '=' . $item->getId() . '&action=delete';
 	}
-	//-----------------------------------------------------------------------------
 
 	/**
 	 * Возвращает URL для ЭУ «Изменить»
@@ -153,7 +145,6 @@ class UI_List_URL_Query implements UI_List_URL_Interface
 	{
 		return $this->baseURL . $this->idName . '=' . $item->getId() . '&action=edit';
 	}
-	//-----------------------------------------------------------------------------
 
 	/**
 	 * Возвращает шаблон URL для ЭУ «Поднять выше»
@@ -168,7 +159,6 @@ class UI_List_URL_Query implements UI_List_URL_Interface
 	{
 		return $this->baseURL . $this->idName . '=' . $item->getId() . '&action=up';
 	}
-	//-----------------------------------------------------------------------------
 
 	/**
 	 * Возвращает шаблон URL для ЭУ «Опустить ниже»
@@ -183,7 +173,6 @@ class UI_List_URL_Query implements UI_List_URL_Interface
 	{
 		return $this->baseURL . $this->idName . '=' . $item->getId() . '&action=down';
 	}
-	//-----------------------------------------------------------------------------
 
 	/**
 	 * Возвращает URL для ЭУ «Включить/Отключить»
@@ -198,5 +187,4 @@ class UI_List_URL_Query implements UI_List_URL_Interface
 	{
 		return $this->baseURL . $this->idName . '=' . $item->getId() . '&action=toggle';
 	}
-	//-----------------------------------------------------------------------------
 }
