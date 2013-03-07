@@ -273,14 +273,19 @@ class UI_List
      * - ordering — Переместить выше/ниже в списке
      * - toggle — Включить/Отключить
      *
-     * @param UI_List_Item_Interface $item          элемент списка, для которого нужны элементы управления
-     * @param string                 $control1,...  элементы управления, которые нужны
+     * Пример:
+     *
+     * <code>
+     * $list->getControls($item, 'delete', 'edit', 'toggle')
+     * </code>
+     *
+     * @param UI_List_Item_Interface $item           элемент списка, для которого нужны элементы управления
      *
      * @return string
      *
      * @since 1.00
      */
-    public function getControls(UI_List_Item_Interface $item, $control1 = null)
+    public function getControls(UI_List_Item_Interface $item)
     {
         $controls = func_get_args();
         array_shift($controls);

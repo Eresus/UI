@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  Сборочный файл для UI
-
- $Id$
  -->
 
 <project name="ui" default="build" basedir="./">
@@ -143,20 +141,12 @@
 	-->
 	<target name="docs" description="Generate documentation">
 
-		<delete dir="${docs.dir}" includeemptydirs="true" failonerror="true" />
+		<delete dir="${docs.dir}" includeemptydirs="true" failonerror="false" />
+        <mkdir dir="${docs.dir}" />
 
-		<phpdoc title="UI ${product.version} API"
-			destdir="${docs.dir}"
-			sourcecode="no"
-			parseprivate="false"
-			output="${docs.converter}">
-			<fileset refid="files.sources" />
-			<projdocfileset dir=".">
-				<include name="README" />
-				<include name="INSTALL" />
-				<include name="CHANGELOG" />
-			</projdocfileset>
-		</phpdoc>
+		<phpdoc2 title="UI ${product.version} API" destdir="${docs.dir}">
+			<fileset refid="files.sources.php" />
+		</phpdoc2>
 
 	</target>
 

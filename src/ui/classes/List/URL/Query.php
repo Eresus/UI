@@ -34,7 +34,7 @@
  * Например, шаблон переключателя страниц может выглядеть так:
  *
  * <code>
- * …/admin.php?mod=ext-myplugin&page=%d
+ * …/admin.php?mod=ext-myplugin&amp;page=%d
  * </code>
  *
  * Корневой URL может быть задан в {@link __construct конструкторе}.
