@@ -321,10 +321,11 @@ class UI_List
      */
     private function getControl_delete(UI_List_Item_Interface $item)
     {
-        return '<a href="' . $this->getURL()->getDelete($item) . '" title="' . ADM_DELETE .
-            '" onclick="return askdel(this);"><img src="' . Eresus_CMS::getLegacyKernel()->root .
-            Eresus_Kernel::app()->getPage()->getUITheme()->getIcon('item-delete.png') . '" alt="' .
-            ADM_DELETE . '"></a> ';
+        /** @var TAdminUI $page */
+        $page = Eresus_Kernel::app()->getPage();
+        return '<a href="' . $this->getURL()->getDelete($item) . '" title="' . ADM_DELETE
+            . '" onclick="return askdel(this);"><img src="' . Eresus_CMS::getLegacyKernel()->root
+            . $page->getUITheme()->getIcon('item-delete.png') . '" alt="' . ADM_DELETE . '"></a> ';
     }
 
     /**
@@ -338,10 +339,11 @@ class UI_List
      */
     private function getControl_edit(UI_List_Item_Interface $item)
     {
-        return '<a href="' . $this->getURL()->getEdit($item) . '" title="' . ADM_EDIT .
-            '"><img src="' . Eresus_CMS::getLegacyKernel()->root .
-            Eresus_Kernel::app()->getPage()->getUITheme()->getIcon('item-edit.png') . '" alt="' .
-            ADM_EDIT . '"></a> ';
+        /** @var TAdminUI $page */
+        $page = Eresus_Kernel::app()->getPage();
+        return '<a href="' . $this->getURL()->getEdit($item) . '" title="' . ADM_EDIT . '"><img src="'
+            . Eresus_CMS::getLegacyKernel()->root . $page->getUITheme()->getIcon('item-edit.png')
+            . '" alt="' . ADM_EDIT . '"></a> ';
     }
 
     /**
@@ -355,14 +357,15 @@ class UI_List
      */
     private function getControl_ordering(UI_List_Item_Interface $item)
     {
-        return '<a href="' . $this->getURL()->getOrderingUp($item) . '" title="' . ADM_UP .
-            '"><img src="' . Eresus_CMS::getLegacyKernel() .
-            Eresus_Kernel::app()->getPage()->getUITheme()->
-                getIcon('move-up.png') . '" alt="' . ADM_UP . '"></a> ' .
-            '<a href="' . $this->getURL()->getOrderingDown($item) . '" title="' . ADM_DOWN .
-            '"><img src="' . Eresus_CMS::getLegacyKernel()->root .
-            Eresus_Kernel::app()->getPage()->getUITheme()->
-                getIcon('move-down.png') . '" alt="' . ADM_DOWN . '"></a> ';
+        $rootUrl = Eresus_CMS::getLegacyKernel()->root;
+        /** @var TAdminUI $page */
+        $page = Eresus_Kernel::app()->getPage();
+
+        return '<a href="' . $this->getURL()->getOrderingUp($item) . '" title="' . ADM_UP
+            . '"><img src="' . $rootUrl . $page->getUITheme()->getIcon('move-up.png') . '" alt="' . ADM_UP
+            . '"></a> <a href="' . $this->getURL()->getOrderingDown($item) . '" title="' . ADM_DOWN
+            . '"><img src="' . $rootUrl . $page->getUITheme()->getIcon('move-down.png') . '" alt="'
+            . ADM_DOWN . '"></a> ';
     }
 
     /**
@@ -376,12 +379,13 @@ class UI_List
      */
     private function getControl_toggle(UI_List_Item_Interface $item)
     {
-        return '<a href="' . $this->getURL()->getToggle($item) . '" title="' .
-            ($item->isEnabled() ? ADM_DEACTIVATE : ADM_ACTIVATE ) .
-            '"><img src="' . Eresus_CMS::getLegacyKernel()->root .
-            Eresus_Kernel::app()->getPage()->getUITheme()->getIcon('item-' .
-                ($item->isEnabled() ? 'active' : 'inactive') . '.png') . '" alt="' .
-            ($item->isEnabled() ? ADM_ACTIVATED : ADM_DEACTIVATED ) . '"></a> ';
+        /** @var TAdminUI $page */
+        $page = Eresus_Kernel::app()->getPage();
+        return '<a href="' . $this->getURL()->getToggle($item) . '" title="'
+            . ($item->isEnabled() ? ADM_DEACTIVATE : ADM_ACTIVATE ) . '"><img src="'
+            . Eresus_CMS::getLegacyKernel()->root . $page->getUITheme()->getIcon('item-'
+            . ($item->isEnabled() ? 'active' : 'inactive') . '.png') . '" alt="'
+            . ($item->isEnabled() ? ADM_ACTIVATED : ADM_DEACTIVATED ) . '"></a> ';
     }
 }
 
