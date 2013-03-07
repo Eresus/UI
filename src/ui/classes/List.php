@@ -68,319 +68,320 @@
  */
 class UI_List
 {
-	/**
-	 * Модуль
-	 *
-	 * @var Plugin
-	 */
-	private $plugin;
+    /**
+     * Модуль
+     *
+     * @var Plugin
+     */
+    private $plugin;
 
-	/**
-	 * Поставщик данных
-	 *
-	 * @var UI_List_DataProvider_Interface
-	 */
-	private $dataProvider;
+    /**
+     * Поставщик данных
+     *
+     * @var UI_List_DataProvider_Interface
+     */
+    private $dataProvider;
 
-	/**
-	 * Размер страницы
-	 *
-	 * @var int
-	 */
-	private $pageSize;
+    /**
+     * Размер страницы
+     *
+     * @var int
+     */
+    private $pageSize;
 
-	/**
-	 * Элементы списка
-	 *
-	 * @var array
-	 */
-	private $items;
+    /**
+     * Элементы списка
+     *
+     * @var array
+     */
+    private $items;
 
-	/**
-	 * Корневой URL
-	 *
-	 * @var UI_List_URL_Interface
-	 */
-	private $url;
+    /**
+     * Корневой URL
+     *
+     * @var UI_List_URL_Interface
+     */
+    private $url;
 
-	/**
-	 * Страница списка
-	 *
-	 * @var int
-	 */
-	private $page = 1;
+    /**
+     * Страница списка
+     *
+     * @var int
+     */
+    private $page = 1;
 
-	/**
-	 * Переключатель страниц
-	 *
-	 * @var PaginationHelper
-	 */
-	private $pagination = null;
+    /**
+     * Переключатель страниц
+     *
+     * @var PaginationHelper
+     */
+    private $pagination = null;
 
-	/**
-	 * Конструктор
-	 *
-	 * @param Plugin                         $plugin    плагин-владелец
-	 * @param UI_List_DataProvider_Interface $provider  поставщик данных
-	 * @param UI_List_URL_Interface          $url       построитель адресов
-	 *
-	 * @return UI_List
-	 *
-	 * @since 1.00
-	 */
-	public function __construct(Plugin $plugin, UI_List_DataProvider_Interface $provider = null,
-		UI_List_URL_Interface $url = null)
-	{
-		$this->plugin = $plugin;
-		if ($provider)
-		{
-			$this->setDataProvider($provider);
-		}
-		if ($url)
-		{
-			$this->setURL($url);
-		}
-	}
+    /**
+     * Конструктор
+     *
+     * @param Plugin                         $plugin    плагин-владелец
+     * @param UI_List_DataProvider_Interface $provider  поставщик данных
+     * @param UI_List_URL_Interface          $url       построитель адресов
+     *
+     * @return UI_List
+     *
+     * @since 1.00
+     */
+    public function __construct(Plugin $plugin, UI_List_DataProvider_Interface $provider = null,
+                                UI_List_URL_Interface $url = null)
+    {
+        $this->plugin = $plugin;
+        if ($provider)
+        {
+            $this->setDataProvider($provider);
+        }
+        if ($url)
+        {
+            $this->setURL($url);
+        }
+    }
 
-	/**
-	 * Возвращает поставщика данных
-	 *
-	 * @return UI_List_DataProvider_Interface
-	 *
-	 * @since 1.00
-	 */
-	public function getDataProvider()
-	{
-		return $this->dataProvider;
-	}
+    /**
+     * Возвращает поставщика данных
+     *
+     * @return UI_List_DataProvider_Interface
+     *
+     * @since 1.00
+     */
+    public function getDataProvider()
+    {
+        return $this->dataProvider;
+    }
 
-	/**
-	 * Устанавливает поставщика данных
-	 *
-	 * @param UI_List_DataProvider_Interface $provider
-	 *
-	 * @return void
-	 *
-	 * @since 1.00
-	 */
-	public function setDataProvider(UI_List_DataProvider_Interface $provider)
-	{
-		$this->dataProvider = $provider;
-	}
+    /**
+     * Устанавливает поставщика данных
+     *
+     * @param UI_List_DataProvider_Interface $provider
+     *
+     * @return void
+     *
+     * @since 1.00
+     */
+    public function setDataProvider(UI_List_DataProvider_Interface $provider)
+    {
+        $this->dataProvider = $provider;
+    }
 
-	/**
-	 * Возвращает построитель адресов
-	 *
-	 * @return UI_List_URL_Interface
-	 *
-	 * @since 1.00
-	 */
-	public function getURL()
-	{
-		if (!$this->url)
-		{
-			$this->url = new UI_List_URL_Query();
-		}
-		return $this->url;
-	}
+    /**
+     * Возвращает построитель адресов
+     *
+     * @return UI_List_URL_Interface
+     *
+     * @since 1.00
+     */
+    public function getURL()
+    {
+        if (!$this->url)
+        {
+            $this->url = new UI_List_URL_Query();
+        }
+        return $this->url;
+    }
 
-	/**
-	 * Устанавливает построитель адресов
-	 *
-	 * См. {@link UI_List_URL_Interface}
-	 *
-	 * @param UI_List_URL_Interface $url
-	 *
-	 * @return void
-	 *
-	 * @since 1.00
-	 */
-	public function setURL(UI_List_URL_Interface $url)
-	{
-		$this->url = $url;
-	}
+    /**
+     * Устанавливает построитель адресов
+     *
+     * См. {@link UI_List_URL_Interface}
+     *
+     * @param UI_List_URL_Interface $url
+     *
+     * @return void
+     *
+     * @since 1.00
+     */
+    public function setURL(UI_List_URL_Interface $url)
+    {
+        $this->url = $url;
+    }
 
-	/**
-	 * Устанавливает номер текущей страницы списка
-	 *
-	 * @param int $page
-	 *
-	 * @return void
-	 *
-	 * @since 1.00
-	 */
-	public function setPage($page)
-	{
-		$this->page = $page;
-	}
+    /**
+     * Устанавливает номер текущей страницы списка
+     *
+     * @param int $page
+     *
+     * @return void
+     *
+     * @since 1.00
+     */
+    public function setPage($page)
+    {
+        $this->page = $page;
+    }
 
-	/**
-	 * Устанавливает размер страницы (в строках)
-	 *
-	 * @param int $size
-	 *
-	 * @return void
-	 *
-	 * @since 1.00
-	 */
-	public function setPageSize($size)
-	{
-		$this->pageSize = $size;
-	}
+    /**
+     * Устанавливает размер страницы (в строках)
+     *
+     * @param int $size
+     *
+     * @return void
+     *
+     * @since 1.00
+     */
+    public function setPageSize($size)
+    {
+        $this->pageSize = $size;
+    }
 
-	/**
-	 * Возвращает массив элементов списка для подстановки в шаблон
-	 *
-	 * @return array
-	 *
-	 * @since 1.00
-	 */
-	public function getItems()
-	{
-		if (is_null($this->items))
-		{
-			$this->items = $this->dataProvider->getItems($this->pageSize,
-				($this->page - 1) * $this->pageSize);
-		}
-		return $this->items;
-	}
+    /**
+     * Возвращает массив элементов списка для подстановки в шаблон
+     *
+     * @return array
+     *
+     * @since 1.00
+     */
+    public function getItems()
+    {
+        if (is_null($this->items))
+        {
+            $this->items = $this->dataProvider->getItems($this->pageSize,
+                ($this->page - 1) * $this->pageSize);
+        }
+        return $this->items;
+    }
 
-	/**
-	 * Возвращает переключатель страниц
-	 *
-	 * @return PaginationHelper
-	 *
-	 * @since 1.00
-	 */
-	public function getPagination()
-	{
-		if (!$this->pagination)
-		{
-			$totalPages = $this->pageSize ? ceil($this->dataProvider->getCount() / $this->pageSize) : 0;
-			$this->pagination = new PaginationHelper($totalPages, $this->page,
-				$this->getURL()->getPagination());
-		}
-		return $this->pagination;
-	}
+    /**
+     * Возвращает переключатель страниц
+     *
+     * @return PaginationHelper
+     *
+     * @since 1.00
+     */
+    public function getPagination()
+    {
+        if (!$this->pagination)
+        {
+            $totalPages = $this->pageSize ? ceil($this->dataProvider->getCount() / $this->pageSize) : 0;
+            $this->pagination = new PaginationHelper($totalPages, $this->page,
+                $this->getURL()->getPagination());
+        }
+        return $this->pagination;
+    }
 
-	/**
-	 * Возвращает разметку элементов управления для использования в шаблоне
-	 *
-	 * Возможные имена ЭУ:
-	 *
-	 * - delete — Удаление
-	 * - edit — Изменение
-	 * - ordering — Переместить выше/ниже в списке
-	 * - toggle — Включить/Отключить
-	 *
-	 * @param UI_List_Item_Interface $item                элемент списка, для которого нужны ЭУ
-	 * @param string                 $control1…$controlN  список ЭУ, которые нужны
-	 *
-	 * @return string
-	 *
-	 * @since 1.00
-	 */
-	public function getControls(UI_List_Item_Interface $item)
-	{
-		$controls = func_get_args();
-		array_shift($controls);
+    /**
+     * Возвращает разметку элементов управления для использования в шаблоне
+     *
+     * Возможные имена ЭУ:
+     *
+     * - delete — Удаление
+     * - edit — Изменение
+     * - ordering — Переместить выше/ниже в списке
+     * - toggle — Включить/Отключить
+     *
+     * @param UI_List_Item_Interface $item          элемент списка, для которого нужны элементы управления
+     * @param string                 $control1,...  элементы управления, которые нужны
+     *
+     * @return string
+     *
+     * @since 1.00
+     */
+    public function getControls(UI_List_Item_Interface $item, $control1 = null)
+    {
+        $controls = func_get_args();
+        array_shift($controls);
 
-		$html = '';
+        $html = '';
 
-		if (in_array('edit', $controls))
-		{
-			$html .= $this->getControl_edit($item);
-		}
+        if (in_array('edit', $controls))
+        {
+            $html .= $this->getControl_edit($item);
+        }
 
-		if (in_array('toggle', $controls))
-		{
-			$html .= $this->getControl_toggle($item);
-		}
+        if (in_array('toggle', $controls))
+        {
+            $html .= $this->getControl_toggle($item);
+        }
 
-		if (in_array('ordering', $controls))
-		{
-			$html .= $this->getControl_ordering($item);
-		}
+        if (in_array('ordering', $controls))
+        {
+            $html .= $this->getControl_ordering($item);
+        }
 
-		if (in_array('delete', $controls))
-		{
-			$html .= $this->getControl_delete($item);
-		}
+        if (in_array('delete', $controls))
+        {
+            $html .= $this->getControl_delete($item);
+        }
 
-		return $html;
-	}
+        return $html;
+    }
 
-	/**
-	 * Возвращает разметку ЭУ «Удалить»
-	 *
-	 * @param UI_List_Item_Interface $item  элемент списка, для которого нужно создать ЭУ
-	 *
-	 * @return string
-	 *
-	 * @since 1.00
-	 */
-	private function getControl_delete(UI_List_Item_Interface $item)
-	{
-		return '<a href="' . $this->getURL()->getDelete($item) . '" title="' . admDelete .
-			'" onclick="return askdel(this);"><img src="' . Eresus_CMS::getLegacyKernel()->root .
-			Eresus_Kernel::app()->getPage()->getUITheme()->getIcon('item-delete.png') . '" alt="' .
-			admDelete . '"></a> ';
-	}
+    /**
+     * Возвращает разметку ЭУ «Удалить»
+     *
+     * @param UI_List_Item_Interface $item  элемент списка, для которого нужно создать ЭУ
+     *
+     * @return string
+     *
+     * @since 1.00
+     */
+    private function getControl_delete(UI_List_Item_Interface $item)
+    {
+        return '<a href="' . $this->getURL()->getDelete($item) . '" title="' . admDelete .
+            '" onclick="return askdel(this);"><img src="' . Eresus_CMS::getLegacyKernel()->root .
+            Eresus_Kernel::app()->getPage()->getUITheme()->getIcon('item-delete.png') . '" alt="' .
+            admDelete . '"></a> ';
+    }
 
-	/**
-	 * Возвращает разметку ЭУ «Изменить»
-	 *
-	 * @param UI_List_Item_Interface $item  элемент списка, для которого нужно создать ЭУ
-	 *
-	 * @return string
-	 *
-	 * @since 1.00
-	 */
-	private function getControl_edit(UI_List_Item_Interface $item)
-	{
-		return '<a href="' . $this->getURL()->getEdit($item) . '" title="' . admEdit .
-			'"><img src="' . Eresus_CMS::getLegacyKernel()->root .
-			Eresus_Kernel::app()->getPage()->getUITheme()->getIcon('item-edit.png') . '" alt="' .
-			admEdit . '"></a> ';
-	}
+    /**
+     * Возвращает разметку ЭУ «Изменить»
+     *
+     * @param UI_List_Item_Interface $item  элемент списка, для которого нужно создать ЭУ
+     *
+     * @return string
+     *
+     * @since 1.00
+     */
+    private function getControl_edit(UI_List_Item_Interface $item)
+    {
+        return '<a href="' . $this->getURL()->getEdit($item) . '" title="' . admEdit .
+            '"><img src="' . Eresus_CMS::getLegacyKernel()->root .
+            Eresus_Kernel::app()->getPage()->getUITheme()->getIcon('item-edit.png') . '" alt="' .
+            admEdit . '"></a> ';
+    }
 
-	/**
-	 * Возвращает разметку ЭУ «Порядок следования»
-	 *
-	 * @param UI_List_Item_Interface $item  элемент списка, для которого нужно создать ЭУ
-	 *
-	 * @return string
-	 *
-	 * @since 1.00
-	 */
-	private function getControl_ordering(UI_List_Item_Interface $item)
-	{
-		return '<a href="' . $this->getURL()->getOrderingUp($item) . '" title="' . admUp .
-			'"><img src="' . Eresus_CMS::getLegacyKernel() .
-			Eresus_Kernel::app()->getPage()->getUITheme()->
-			getIcon('move-up.png') . '" alt="' . admUp . '"></a> ' .
-			'<a href="' . $this->getURL()->getOrderingDown($item) . '" title="' . admDown .
-			'"><img src="' . Eresus_CMS::getLegacyKernel()->root .
-			Eresus_Kernel::app()->getPage()->getUITheme()->
-			getIcon('move-down.png') . '" alt="' . admDown . '"></a> ';
-	}
+    /**
+     * Возвращает разметку ЭУ «Порядок следования»
+     *
+     * @param UI_List_Item_Interface $item  элемент списка, для которого нужно создать ЭУ
+     *
+     * @return string
+     *
+     * @since 1.00
+     */
+    private function getControl_ordering(UI_List_Item_Interface $item)
+    {
+        return '<a href="' . $this->getURL()->getOrderingUp($item) . '" title="' . admUp .
+            '"><img src="' . Eresus_CMS::getLegacyKernel() .
+            Eresus_Kernel::app()->getPage()->getUITheme()->
+                getIcon('move-up.png') . '" alt="' . admUp . '"></a> ' .
+            '<a href="' . $this->getURL()->getOrderingDown($item) . '" title="' . admDown .
+            '"><img src="' . Eresus_CMS::getLegacyKernel()->root .
+            Eresus_Kernel::app()->getPage()->getUITheme()->
+                getIcon('move-down.png') . '" alt="' . admDown . '"></a> ';
+    }
 
-	/**
-	 * Возвращает разметку ЭУ «Активность»
-	 *
-	 * @param UI_List_Item_Interface $item  элемент списка, для которого нужно создать ЭУ
-	 *
-	 * @return string
-	 *
-	 * @since 1.00
-	 */
-	private function getControl_toggle(UI_List_Item_Interface $item)
-	{
-		return '<a href="' . $this->getURL()->getToggle($item) . '" title="' .
-			($item->isEnabled() ? admDeactivate : admActivate ) .
-			'"><img src="' . Eresus_CMS::getLegacyKernel()->root .
-			Eresus_Kernel::app()->getPage()->getUITheme()->getIcon('item-' .
-			($item->isEnabled() ? 'active' : 'inactive') . '.png') . '" alt="' .
-			($item->isEnabled() ? admActivated : admDeactivated ) . '"></a> ';
-	}
+    /**
+     * Возвращает разметку ЭУ «Активность»
+     *
+     * @param UI_List_Item_Interface $item  элемент списка, для которого нужно создать ЭУ
+     *
+     * @return string
+     *
+     * @since 1.00
+     */
+    private function getControl_toggle(UI_List_Item_Interface $item)
+    {
+        return '<a href="' . $this->getURL()->getToggle($item) . '" title="' .
+            ($item->isEnabled() ? admDeactivate : admActivate ) .
+            '"><img src="' . Eresus_CMS::getLegacyKernel()->root .
+            Eresus_Kernel::app()->getPage()->getUITheme()->getIcon('item-' .
+                ($item->isEnabled() ? 'active' : 'inactive') . '.png') . '" alt="' .
+            ($item->isEnabled() ? admActivated : admDeactivated ) . '"></a> ';
+    }
 }
+

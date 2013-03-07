@@ -35,23 +35,24 @@
  */
 interface UI_List_Item_Interface
 {
-	/**
-	 * Должен возвращать идентификатор элемента
-	 *
-	 * @return string
-	 *
-	 * @since 1.00
-	 */
-	public function getId();
+    /**
+     * Должен возвращать идентификатор элемента
+     *
+     * @return string
+     *
+     * @since 1.00
+     */
+    public function getId();
 
-	/**
-	 * Должен возвращать true если элемент включён
-	 *
-	 * Используется для определения состояния ЭУ «Активность»
-	 *
-	 * @return bool
-	 *
-	 * @since 1.00
-	 */
-	public function isEnabled();
+    /**
+     * Должен возвращать true если элемент включён
+     *
+     * Используется для определения состояния ЭУ «Активность»
+     *
+     * @return bool
+     *
+     * @since 1.00
+     */
+    public function isEnabled();
 }
+

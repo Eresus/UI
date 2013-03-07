@@ -42,67 +42,68 @@
  */
 interface UI_List_URL_Interface
 {
-	/**
-	 * Должен возвращать шаблон URL для переключателя страниц
-	 *
-	 * @return string
-	 *
-	 * @since 1.00
-	 */
-	public function getPagination();
+    /**
+     * Должен возвращать шаблон URL для переключателя страниц
+     *
+     * @return string
+     *
+     * @since 1.00
+     */
+    public function getPagination();
 
-	/**
-	 * Должен возвращать шаблон URL для ЭУ «Удалить»
-	 *
-	 * @param UI_List_Item_Interface $item
-	 *
-	 * @return string
-	 *
-	 * @since 1.00
-	 */
-	public function getDelete(UI_List_Item_Interface $item);
+    /**
+     * Должен возвращать шаблон URL для ЭУ «Удалить»
+     *
+     * @param UI_List_Item_Interface $item
+     *
+     * @return string
+     *
+     * @since 1.00
+     */
+    public function getDelete(UI_List_Item_Interface $item);
 
-	/**
-	 * Должен возвращать шаблон URL для ЭУ «Изменить»
-	 *
-	 * @param UI_List_Item_Interface $item
-	 *
-	 * @return string
-	 *
-	 * @since 1.00
-	 */
-	public function getEdit(UI_List_Item_Interface $item);
+    /**
+     * Должен возвращать шаблон URL для ЭУ «Изменить»
+     *
+     * @param UI_List_Item_Interface $item
+     *
+     * @return string
+     *
+     * @since 1.00
+     */
+    public function getEdit(UI_List_Item_Interface $item);
 
-	/**
-	 * Должен возвращать шаблон URL для ЭУ «Поднять выше»
-	 *
-	 * @param UI_List_Item_Interface $item
-	 *
-	 * @return string
-	 *
-	 * @since 1.00
-	 */
-	public function getOrderingUp(UI_List_Item_Interface $item);
+    /**
+     * Должен возвращать шаблон URL для ЭУ «Поднять выше»
+     *
+     * @param UI_List_Item_Interface $item
+     *
+     * @return string
+     *
+     * @since 1.00
+     */
+    public function getOrderingUp(UI_List_Item_Interface $item);
 
-	/**
-	 * Должен возвращать шаблон URL для ЭУ «Опустить ниже»
-	 *
-	 * @param UI_List_Item_Interface $item
-	 *
-	 * @return string
-	 *
-	 * @since 1.00
-	 */
-	public function getOrderingDown(UI_List_Item_Interface $item);
+    /**
+     * Должен возвращать шаблон URL для ЭУ «Опустить ниже»
+     *
+     * @param UI_List_Item_Interface $item
+     *
+     * @return string
+     *
+     * @since 1.00
+     */
+    public function getOrderingDown(UI_List_Item_Interface $item);
 
-	/**
-	 * Должен возвращать шаблон URL для ЭУ «Включить/Отключить»
-	 *
-	 * @param UI_List_Item_Interface $item
-	 *
-	 * @return string
-	 *
-	 * @since 1.00
-	 */
-	public function getToggle(UI_List_Item_Interface $item);
+    /**
+     * Должен возвращать шаблон URL для ЭУ «Включить/Отключить»
+     *
+     * @param UI_List_Item_Interface $item
+     *
+     * @return string
+     *
+     * @since 1.00
+     */
+    public function getToggle(UI_List_Item_Interface $item);
 }
+

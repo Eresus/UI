@@ -43,148 +43,149 @@
  */
 class UI_List_URL_Query implements UI_List_URL_Interface
 {
-	/**
-	 * Базовый URL
-	 *
-	 * Всегда заканчивается символом & или ?
-	 *
-	 * @var string
-	 * @see __construct()
-	 */
-	private $baseURL;
+    /**
+     * Базовый URL
+     *
+     * Всегда заканчивается символом & или ?
+     *
+     * @var string
+     * @see __construct()
+     */
+    private $baseURL;
 
-	/**
-	 * Имя аргумента для передачи идентификатора
-	 *
-	 * @var string
-	 * @see setIdName()
-	 */
-	private $idName = 'id';
+    /**
+     * Имя аргумента для передачи идентификатора
+     *
+     * @var string
+     * @see setIdName()
+     */
+    private $idName = 'id';
 
-	/**
-	 * Конструктор
-	 *
-	 * @param string $baseURL  базовый URL, все аргументы будет присоединяться к нему. Если не указан,
-	 *                         будет использован результат вызова {@link WebPage::url()}.
-	 *
-	 * @return UI_List_URL_Query
-	 *
-	 * @since 1.00
-	 * @uses WebPage::url()
-	 */
-	public function __construct($baseURL = null)
-	{
-		if ($baseURL)
-		{
-			$this->baseURL = $baseURL;
-		}
-		else
-		{
-			$this->baseURL = Eresus_Kernel::app()->getPage()->url();
-		}
-		$lastChar = mb_substr($this->baseURL, -1);
-		if ('&' != $lastChar && '?' != $lastChar)
-		{
-			$hasQuery = mb_strpos($this->baseURL, '?') !== false;
-			$this->baseURL .= $hasQuery ? '&' : '?';
-		}
-	}
+    /**
+     * Конструктор
+     *
+     * @param string $baseURL  базовый URL, все аргументы будет присоединяться к нему. Если не указан,
+     *                         будет использован результат вызова {@link WebPage::url()}.
+     *
+     * @return UI_List_URL_Query
+     *
+     * @since 1.00
+     * @uses WebPage::url()
+     */
+    public function __construct($baseURL = null)
+    {
+        if ($baseURL)
+        {
+            $this->baseURL = $baseURL;
+        }
+        else
+        {
+            $this->baseURL = Eresus_Kernel::app()->getPage()->url();
+        }
+        $lastChar = mb_substr($this->baseURL, -1);
+        if ('&' != $lastChar && '?' != $lastChar)
+        {
+            $hasQuery = mb_strpos($this->baseURL, '?') !== false;
+            $this->baseURL .= $hasQuery ? '&' : '?';
+        }
+    }
 
-	/**
-	 * Задаёт имя аргумента для передачи идентификатора элемента списка
-	 *
-	 * По умолчанию имя аргумента «id».
-	 *
-	 * @param string $name
-	 *
-	 * @return void
-	 *
-	 * @since 1,.00
-	 */
-	public function setIdName($name)
-	{
-		$this->idName = $name;
-	}
+    /**
+     * Задаёт имя аргумента для передачи идентификатора элемента списка
+     *
+     * По умолчанию имя аргумента «id».
+     *
+     * @param string $name
+     *
+     * @return void
+     *
+     * @since 1,.00
+     */
+    public function setIdName($name)
+    {
+        $this->idName = $name;
+    }
 
-	/**
-	 * Возвращает шаблон URL для переключателя страниц
-	 *
-	 * @return string
-	 *
-	 * @since 1.00
-	 */
-	public function getPagination()
-	{
-		return $this->baseURL . 'page=%d';
-	}
+    /**
+     * Возвращает шаблон URL для переключателя страниц
+     *
+     * @return string
+     *
+     * @since 1.00
+     */
+    public function getPagination()
+    {
+        return $this->baseURL . 'page=%d';
+    }
 
-	/**
-	 * Возвращает URL для ЭУ «Удалить»
-	 *
-	 * @param UI_List_Item_Interface $item
-	 *
-	 * @return string
-	 *
-	 * @since 1.00
-	 */
-	public function getDelete(UI_List_Item_Interface $item)
-	{
-		return $this->baseURL . $this->idName . '=' . $item->getId() . '&action=delete';
-	}
+    /**
+     * Возвращает URL для ЭУ «Удалить»
+     *
+     * @param UI_List_Item_Interface $item
+     *
+     * @return string
+     *
+     * @since 1.00
+     */
+    public function getDelete(UI_List_Item_Interface $item)
+    {
+        return $this->baseURL . $this->idName . '=' . $item->getId() . '&action=delete';
+    }
 
-	/**
-	 * Возвращает URL для ЭУ «Изменить»
-	 *
-	 * @param UI_List_Item_Interface $item
-	 *
-	 * @return string
-	 *
-	 * @since 1.00
-	 */
-	public function getEdit(UI_List_Item_Interface $item)
-	{
-		return $this->baseURL . $this->idName . '=' . $item->getId() . '&action=edit';
-	}
+    /**
+     * Возвращает URL для ЭУ «Изменить»
+     *
+     * @param UI_List_Item_Interface $item
+     *
+     * @return string
+     *
+     * @since 1.00
+     */
+    public function getEdit(UI_List_Item_Interface $item)
+    {
+        return $this->baseURL . $this->idName . '=' . $item->getId() . '&action=edit';
+    }
 
-	/**
-	 * Возвращает шаблон URL для ЭУ «Поднять выше»
-	 *
-	 * @param UI_List_Item_Interface $item
-	 *
-	 * @return string
-	 *
-	 * @since 1.00
-	 */
-	public function getOrderingUp(UI_List_Item_Interface $item)
-	{
-		return $this->baseURL . $this->idName . '=' . $item->getId() . '&action=up';
-	}
+    /**
+     * Возвращает шаблон URL для ЭУ «Поднять выше»
+     *
+     * @param UI_List_Item_Interface $item
+     *
+     * @return string
+     *
+     * @since 1.00
+     */
+    public function getOrderingUp(UI_List_Item_Interface $item)
+    {
+        return $this->baseURL . $this->idName . '=' . $item->getId() . '&action=up';
+    }
 
-	/**
-	 * Возвращает шаблон URL для ЭУ «Опустить ниже»
-	 *
-	 * @param UI_List_Item_Interface $item
-	 *
-	 * @return string
-	 *
-	 * @since 1.00
-	 */
-	public function getOrderingDown(UI_List_Item_Interface $item)
-	{
-		return $this->baseURL . $this->idName . '=' . $item->getId() . '&action=down';
-	}
+    /**
+     * Возвращает шаблон URL для ЭУ «Опустить ниже»
+     *
+     * @param UI_List_Item_Interface $item
+     *
+     * @return string
+     *
+     * @since 1.00
+     */
+    public function getOrderingDown(UI_List_Item_Interface $item)
+    {
+        return $this->baseURL . $this->idName . '=' . $item->getId() . '&action=down';
+    }
 
-	/**
-	 * Возвращает URL для ЭУ «Включить/Отключить»
-	 *
-	 * @param UI_List_Item_Interface $item
-	 *
-	 * @return string
-	 *
-	 * @since 1.00
-	 */
-	public function getToggle(UI_List_Item_Interface $item)
-	{
-		return $this->baseURL . $this->idName . '=' . $item->getId() . '&action=toggle';
-	}
+    /**
+     * Возвращает URL для ЭУ «Включить/Отключить»
+     *
+     * @param UI_List_Item_Interface $item
+     *
+     * @return string
+     *
+     * @since 1.00
+     */
+    public function getToggle(UI_List_Item_Interface $item)
+    {
+        return $this->baseURL . $this->idName . '=' . $item->getId() . '&action=toggle';
+    }
 }
+

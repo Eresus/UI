@@ -34,27 +34,28 @@
  */
 class UI extends Plugin
 {
-	/**
-	 * Версия плагина
-	 * @var string
-	 */
-	public $version = '${product.version}';
+    /**
+     * Версия плагина
+     * @var string
+     */
+    public $version = '${product.version}';
 
-	/**
-	 * Требуемая версия ядра
-	 * @var string
-	 */
-	public $kernel = '3.00';
+    /**
+     * Требуемая версия ядра
+     * @var string
+     */
+    public $kernel = '3.00';
 
-	/**
-	 * Название плагина
-	 * @var string
-	 */
-	public $title = 'UI';
+    /**
+     * Название плагина
+     * @var string
+     */
+    public $title = 'UI';
 
-	/**
-	 * Описание плагина
-	 * @var string
-	 */
-	public $description = 'Компоненты пользовательского интерфейса';
+    /**
+     * Описание плагина
+     * @var string
+     */
+    public $description = 'Компоненты пользовательского интерфейса';
 }
+
