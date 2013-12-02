@@ -179,7 +179,10 @@ class UI_List
     {
         if (!$this->url)
         {
-            $this->url = new UI_List_URL_Query();
+            $this->url =
+                Eresus_Kernel::app()->getPage() instanceof TClientUI
+                    ? new UI_List_URL_Client()
+                    : new UI_List_URL_Query();
         }
         return $this->url;
     }
