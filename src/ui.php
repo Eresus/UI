@@ -32,7 +32,7 @@
  *
  * @package UI
  */
-class UI extends Plugin
+class UI extends Eresus_Plugin
 {
     /**
      * Версия плагина
@@ -44,7 +44,7 @@ class UI extends Plugin
      * Требуемая версия ядра
      * @var string
      */
-    public $kernel = '3.00';
+    public $kernel = '3.01a';
 
     /**
      * Название плагина
