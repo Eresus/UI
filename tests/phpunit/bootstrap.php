@@ -146,7 +146,7 @@ class MockFacade
  * @package UI
  * @subpackage Tests
  */
-class Plugin extends UniversalStub {}
+class Eresus_Plugin extends UniversalStub {}
 
 /**
  * Заглушка для класса DB

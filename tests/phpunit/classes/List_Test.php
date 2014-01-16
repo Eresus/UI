@@ -53,7 +53,7 @@ class UI_List_Test extends PHPUnit_Framework_TestCase
 			setMethods(array('setDataProvider', 'setURL'))->getMock();
 		$list->expects($this->once())->method('setDataProvider');
 		$list->expects($this->once())->method('setURL');
-		$list->__construct(new Plugin(), new UI_List_Test_DataProvider(), new UI_List_Test_URL());
+		$list->__construct(new Eresus_Plugin(), new UI_List_Test_DataProvider(), new UI_List_Test_URL());
 	}
 	//-----------------------------------------------------------------------------
 
@@ -63,7 +63,7 @@ class UI_List_Test extends PHPUnit_Framework_TestCase
 	 */
 	public function test_set_get_DataProvider()
 	{
-		$list = new UI_List(new Plugin());
+		$list = new UI_List(new Eresus_Plugin());
 		$provider = new UI_List_Test_DataProvider();
 		$list->setDataProvider($provider);
 		$this->assertSame($provider, $list->getDataProvider());
@@ -77,7 +77,7 @@ class UI_List_Test extends PHPUnit_Framework_TestCase
 	{
 		$provider = $this->getMock('UI_List_Test_DataProvider', array('getItems'));
 		$provider->expects($this->once())->method('getItems')->with(10, 10);
-		$list = new UI_List(new Plugin(), $provider);
+		$list = new UI_List(new Eresus_Plugin(), $provider);
 		$list->setPageSize(10);
 		$list->setPage(2);
 		$list->getItems();
@@ -94,7 +94,7 @@ class UI_List_Test extends PHPUnit_Framework_TestCase
 
 		$url = new UI_List_Test_URL;
 
-		$list = new UI_List(new Plugin(), $provider, $url);
+		$list = new UI_List(new Eresus_Plugin(), $provider, $url);
 		$list->setPageSize(10);
 		$list->setPage(5);
 		$list->getPagination();

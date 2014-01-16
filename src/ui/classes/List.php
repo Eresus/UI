@@ -71,7 +71,7 @@ class UI_List
     /**
      * Модуль
      *
-     * @var Plugin
+     * @var Eresus_Plugin
      */
     private $plugin;
 
@@ -120,7 +120,7 @@ class UI_List
     /**
      * Конструктор
      *
-     * @param Plugin                         $plugin    плагин-владелец
+     * @param Eresus_Plugin                  $plugin    плагин-владелец
      * @param UI_List_DataProvider_Interface $provider  поставщик данных
      * @param UI_List_URL_Interface          $url       построитель адресов
      *
@@ -128,7 +128,7 @@ class UI_List
      *
      * @since 1.00
      */
-    public function __construct(Plugin $plugin, UI_List_DataProvider_Interface $provider = null,
+    public function __construct(Eresus_Plugin $plugin, UI_List_DataProvider_Interface $provider = null,
                                 UI_List_URL_Interface $url = null)
     {
         $this->plugin = $plugin;
@@ -179,7 +179,10 @@ class UI_List
     {
         if (!$this->url)
         {
-            $this->url = new UI_List_URL_Query();
+            $this->url =
+                Eresus_Kernel::app()->getPage() instanceof TClientUI
+                    ? new UI_List_URL_Client()
+                    : new UI_List_URL_Query();
         }
         return $this->url;
     }
